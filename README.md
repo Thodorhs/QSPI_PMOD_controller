@@ -1,4 +1,4 @@
-# QSPI PMOD FPGA Tester (SystemVerilog)
+# QSPI_PMOD_controller (SystemVerilog)
 
 A complete SystemVerilog SPI Memory Controller and automated hardware tester for the **QSPI PMOD board** using a standard 32-bit parallel bus interface (PipeCon). Featuring 1x Winbond W25Q128JV 16MB Flash and 2x APMemory APS6404L 8MB PSRAMs tested on the Nexys A7-100T (xc7a100tcsg324-1) FPGA.
 
