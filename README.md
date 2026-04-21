@@ -10,6 +10,7 @@ This repository provides a fully synthesizable, out-of-the-box solution to inter
 * **Hardware Flash Translation:** Uses "Magic Addresses" to abstract complex Flash operations (Write Enable, Sector Erase, and Status Polling) into simple 32-bit memory writes.
 * **Configurable Clock Divider:** Easily scale the SPI `SCK` frequency to match the signal integrity limits of your FPGA's PMOD pins.
 * **Visual Feedback:** Uses FPGA LEDs and 7-segment displays to show test phases, progress, and exact points of failure.
+* **Test Reset:** Center button BTNC used to reset/rerun the test.
 
 ---
 
@@ -27,11 +28,11 @@ Compile `spi_memory_controller.sv` and `fpga_tester_top.sv` in Vivado and flash 
    * **Phase 1 (`1`):** Stress-testing PSRAM A.
    * **Phase 2 (`2`):** Stress-testing PSRAM B.
    * **Phase 3 (`3`):** Unlocking, erasing, programming, and verifying the Flash memory.
-3. The 16 Red LEDs will display the lower 16 bits of the memory address currently being tested.
+3. The 16 lower LEDs will display the lower 16 bits of the memory address currently being tested.
 
 ### 3. Understanding the Results
-* 🟢 **Green LED ON:** SUCCESS! All tests across all three chips passed with zero bit-errors.
-* 🔴 **Green LED OFF & Red LEDs Frozen:** ERROR! A read transaction returned bad data. The tester immediately halts, and the Red LEDs will freeze to show the lower 16 bits of the current memory address that failled.
+* **Green LED ON:** SUCCESS! All tests across all three chips passed with zero bit-errors.
+* **Green LED OFF & Lower LEDs Frozen:** ERROR! A read transaction returned bad data. The tester immediately halts, and the lower LEDs will freeze to show the lower 16 bits of the current memory address that failled.
 
 ---
 
@@ -56,3 +57,10 @@ You can adjust the clock speed by changing `DIVIDER_RATIO` in `spi_memory_contro
 * `DIVIDER_RATIO = 8` ➔ 12.5 MHz (Highly stable for PMODs)
 * `DIVIDER_RATIO = 4` ➔ 25.0 MHz (depends on fpga protection resistors and clock cap)
 * `DIVIDER_RATIO = 2` ➔ 50.0 MHz (Requires excellent signal integrity)
+
+## Test example
+
+![My Image](img/fpga.jpg)
+
+In this example we can see the whole setup. Also we can see that the test has completed successfully (Green success led ON) and the lower 16 bits of the last address used.
+
