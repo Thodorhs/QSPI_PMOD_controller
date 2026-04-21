@@ -21,7 +21,7 @@ module spi_memory_controller (
 );
 
     
-    parameter DIVIDER_RATIO = 4; 
+    parameter DIVIDER_RATIO = 8; 
     logic [7:0] clk_div; 
 
     typedef enum logic[2:0] {
